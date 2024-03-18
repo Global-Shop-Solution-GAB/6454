@@ -1,0 +1,390 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.F_quote_rev..create(BaseForm)
+Gui.F_quote_rev..caption("PO Revision")
+Gui.F_quote_rev..size(18270,5730)
+Gui.F_quote_rev..minx(0)
+Gui.F_quote_rev..miny(0)
+Gui.F_quote_rev..position(0,0)
+Gui.F_quote_rev..event(UnLoad,f_quote_rev_unload)
+Gui.F_quote_rev..fontsize(10)
+Gui.F_quote_rev..forecolor(0)
+Gui.F_quote_rev..fontstyle(False,False,False,False)
+Gui.F_quote_rev..BackColor(-2147483633)
+Gui.F_quote_rev..mousepointer(0)
+Gui.F_quote_rev..AlwaysOnTop(False)
+Gui.F_quote_rev..FontName("Tahoma")
+Gui.F_quote_rev..ControlBox(True)
+Gui.F_quote_rev..MaxButton(True)
+Gui.F_quote_rev..MinButton(True)
+Gui.F_quote_rev..Moveable(True)
+Gui.F_quote_rev..Sizeable(True)
+Gui.F_quote_rev..ShowInTaskBar(True)
+Gui.F_quote_rev..TitleBar(True)
+Gui.F_quote_rev.lbl_quote_no.create(label,"PO No.",True,585,225,1,75,255,True,0,"Arial",9,-2147483633,0,0)
+Gui.F_quote_rev.lbl_quote_no.defaultvalue("")
+Gui.F_quote_rev.lbl_quote_no.BorderStyle(0)
+Gui.F_quote_rev.txt_quote_no.create(textbox,"",True,1155,330,0,1380,165,True,0,"Arial",9,-2147483643,1)
+Gui.F_quote_rev.txt_quote_no.defaultvalue("")
+Gui.F_quote_rev.txt_quote_no.Locked(True)
+Gui.F_quote_rev.cmd_browse_quote.create(button)
+Gui.F_quote_rev.cmd_browse_quote.caption("^")
+Gui.F_quote_rev.cmd_browse_quote.size(390,375)
+Gui.F_quote_rev.cmd_browse_quote.position(2640,150)
+Gui.F_quote_rev.cmd_browse_quote.fontsize(10)
+Gui.F_quote_rev.cmd_browse_quote.event(Click,cmd_browse_quote_click)
+Gui.F_quote_rev.cmd_browse_quote.defaultvalue("")
+Gui.F_quote_rev.cmd_browse_quote.Enabled(True)
+Gui.F_quote_rev.cmd_browse_quote.Visible(True)
+Gui.F_quote_rev.cmd_browse_quote.Zorder(0)
+Gui.F_quote_rev.cmd_browse_quote.FontName("Tahoma")
+Gui.F_quote_rev.lbl_quote_rev.create(label,"Revision",True,825,255,1,4890,270,True,0,"Arial",9,-2147483633,0,0)
+Gui.F_quote_rev.lbl_quote_rev.defaultvalue("")
+Gui.F_quote_rev.lbl_quote_rev.BorderStyle(0)
+Gui.F_quote_rev.dropdownlist_quote_rev.create(dropdownlist)
+Gui.F_quote_rev.dropdownlist_quote_rev.size(765,345)
+Gui.F_quote_rev.dropdownlist_quote_rev.position(5745,165)
+Gui.F_quote_rev.dropdownlist_quote_rev.fontsize(9)
+Gui.F_quote_rev.dropdownlist_quote_rev.event(SelectedIndexChanged,dropdownlist_quote_rev_click)
+Gui.F_quote_rev.dropdownlist_quote_rev.defaultvalue("")
+Gui.F_quote_rev.dropdownlist_quote_rev.Enabled(True)
+Gui.F_quote_rev.dropdownlist_quote_rev.Visible(True)
+Gui.F_quote_rev.dropdownlist_quote_rev.Zorder(0)
+Gui.F_quote_rev.dropdownlist_quote_rev.FontName("Tahoma")
+Gui.F_quote_rev.lbl_cust.create(label,"Vendor",True,600,225,1,75,810,True,0,"Arial",9,-2147483633,0,0)
+Gui.F_quote_rev.lbl_cust.defaultvalue("")
+Gui.F_quote_rev.lbl_cust.BorderStyle(0)
+Gui.F_quote_rev.txt_cust.create(textbox,"",True,5115,345,0,1380,720,True,0,"Arial",10,-2147483643,1)
+Gui.F_quote_rev.txt_cust.defaultvalue("")
+Gui.F_quote_rev.txt_cust.Locked(True)
+Gui.F_quote_rev.lbl_sales.create(label,"Buyer",True,480,225,1,90,1335,True,0,"Arial",9,-2147483633,0,0)
+Gui.F_quote_rev.lbl_sales.defaultvalue("")
+Gui.F_quote_rev.lbl_sales.BorderStyle(0)
+Gui.F_quote_rev.txt_sales.create(textbox,"",True,5115,345,0,1380,1245,True,0,"Arial",10,-2147483643,1)
+Gui.F_quote_rev.txt_sales.defaultvalue("")
+Gui.F_quote_rev.txt_sales.Locked(True)
+Gui.F_quote_rev.lbl_info.create(label,"",,0,0,1,0,0,True,0,"Arial",10,0,0,0)
+Gui.F_quote_rev.lbl_info.defaultvalue("")
+Gui.F_quote_rev.lbl_info.BorderStyle(0)
+Gui.F_quote_rev.lbl_addl_info1.create(label,"",,0,0,1,0,0,True,0,"Arial",10,0,0,0)
+Gui.F_quote_rev.lbl_addl_info1.defaultvalue("")
+Gui.F_quote_rev.lbl_addl_info1.BorderStyle(0)
+Gui.F_quote_rev.GsGCChange.Create(GsGridControl)
+Gui.F_quote_rev.GsGCChange.Size(17850,3345)
+Gui.F_quote_rev.GsGCChange.Position(135,1800)
+Gui.F_quote_rev.GsGCChange.Enabled(True)
+Gui.F_quote_rev.GsGCChange.Visible(True)
+Gui.F_quote_rev.GsGCChange.Zorder(0)
+Gui.F_quote_rev.frameLastRev.Create(Frame)
+Gui.F_quote_rev.frameLastRev.Size(3270,675)
+Gui.F_quote_rev.frameLastRev.Position(7995,840)
+Gui.F_quote_rev.frameLastRev.Caption("Last Revision")
+Gui.F_quote_rev.frameLastRev.FontSize(9)
+Gui.F_quote_rev.frameLastRev.Enabled(True)
+Gui.F_quote_rev.frameLastRev.Visible(True)
+Gui.F_quote_rev.frameLastRev.Zorder(0)
+Gui.F_quote_rev.frameLastRev.FontName("Tahoma")
+Gui.F_quote_rev.lbl_LastRev.Create(Label,"",True,15,225,0,150,345,True,0,"Arial",9,-2147483633,0,0)
+Gui.F_quote_rev.lbl_LastRev.Parent("frameLastRev")
+Gui.F_quote_rev.lbl_LastRev.BorderStyle(0)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Variable.UDT.uRec.Define("LINE",String,LINE)
+Variable.UDT.uRec.Define("CHANGE",String,CHANGE)
+Variable.UDT.uRec.Define("USERID",String,USERID)
+Variable.UDT.uRec.Define("DATE",Date,Date)
+Variable.UDT.uRec.Define("TIME",String,TIME)
+Variable.UDT.uRec.Define("SEQ",String,SEQ)
+Variable.UDT.uRec.Define("BEFORE",String,BEFORE)
+Variable.UDT.uRec.Define("AFTER",String,AFTER)
+Variable.UDT.uRec.Define("MODE",String,ACTION)
+Variable.UDT.uRec.Define("ACTION",String)
+
+Variable.uGlobal.uRec.Declare("uRec")
+Variable.Global.sQuote.Declare(String)
+Variable.Global.sRev.Declare(String)
+Variable.Global.sUser.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'This GAB script is to display all the changes made in the quote. It is a new screen that can to be placed under File, View, or Transactions.
+
+'Created by: Maximilian Hertanto (17 May 2015)
+'Updated:
+'- 18 May 2015: Adding a new way to open View Quote Revision from Hook 10960 in Open Quote or View Quote (loadQuoteRev, loadQuoteRevSub).
+'- 18 May 2015: In the new screen quote no and browsing button are not accessible.
+'- 18 May 2015: Fix the display problem when changing from one quote to a new one.
+'- 19 May 2015: Add a message notification when the current quote rev is opened by a user (the current rev only has only a reference row).
+'- 20 May 2015: Resize Change, Before, After column widths in fg_style
+'- 24 May 2015: In loadUDT, the database query is added with exclusion of seq ZZ
+'- 28 Jan 2016: Major rewrite of the script
+
+V.Local.sIcon.Declare
+V.Local.bExist.Declare
+
+F.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+F.ODBC.Connection!conx.TableExists("GAB_6454_PO_REV",V.Local.bExist)
+F.Intrinsic.Control.If(V.Local.bExist,=,False)
+	F.Intrinsic.UI.InvokeWaitDialog("Creating custom table to store PO changes","PO Revision [APAC]")
+	F.ODBC.Connection!conx.Execute("CREATE TABLE GAB_6454_PO_REV(PURCHASE_ORDER VARCHAR(7),REV VARCHAR(2),SEQ VARCHAR(2),LINE VARCHAR(4),ACTION VARCHAR(2),CHANGE VARCHAR(30),BEFORE VARCHAR(30),AFTER VARCHAR(30),USERID VARCHAR(8),DATE_CHG DATE,TIME_CHG CHAR(8),PRGM VARCHAR(15));")
+	F.Intrinsic.UI.CloseWaitDialog
+'		F.Intrinsic.Control.Else
+'			F.ODBC.Connection!conx.FieldExists("GAB_6454_PO_REV","DATE_CHG",V.Local.bExist)
+'			F.Intrinsic.Control.If(V.Local.bExist,=,False)
+'				F.Intrinsic.UI.InvokeWaitDialog("Updating custom table","PO Revision [APAC]")
+'				F.ODBC.Connection!conx.Execute("alter table GAB_6454_PO_REV rename column DATE to DATE_CHG")
+'				F.ODBC.Connection!conx.Execute("alter table GAB_6454_PO_REV rename column TIME to TIME_CHG")
+'				F.Intrinsic.UI.CloseWaitDialog
+'			F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+'Set the style for the info label at the bottom
+gui.F_quote_rev.GsGCChange.Anchor(15)
+
+'Quote Open and View script 1 hook
+F.Intrinsic.Control.If(V.Caller.Hook,=,16890)
+	Gui.F_quote_rev.txt_quote_no.Locked(1)
+	'Reformat quote number to 7 characters
+	V.Global.sQuote.Set(Variable.Passed.000008)
+	F.Intrinsic.String.LPad(V.Global.sQuote,"0",7,V.Global.sQuote)
+	F.Intrinsic.Control.If(V.Caller.Switches,=,"O")
+		F.Intrinsic.Control.CallSub(Loadquoterevsub)
+	F.Intrinsic.Control.Elseif(V.Caller.Switches,=,"V")
+		F.Intrinsic.Control.CallSub(Loadquoterevsub)
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.String.Build("{0}\ART\gss2.ico",V.Caller.GlobalDir,V.Local.sIcon)
+Gui.F_quote_rev..Icon(V.Local.sIcon)
+'Gui.F_quote_rev.lbl_currency.Visible(False)
+'Gui.F_quote_rev.lbl_CreatedBy.Visible(False)
+'Gui.F_quote_rev.lbl_LastRev.Visible(False)
+
+Gui.F_quote_rev..Show
+
+Program.Sub.Main.End
+
+Program.Sub.f_quote_rev_unload.Start
+F.Intrinsic.Control.If(V.DataTable.dtChange.Exists,=,True)
+	F.Data.DataView.Close("dtChange","dvChange")
+	F.Data.DataTable.Close("dtChange")
+F.Intrinsic.Control.EndIf
+F.ODBC.Connection!conx.Close
+F.Intrinsic.Control.End
+
+Program.Sub.f_quote_rev_unload.End
+
+Program.Sub.dropdownlist_quote_rev_click.Start
+V.Global.sRev.Set(V.Screen.F_quote_rev!dropdownlist_quote_rev.Text)
+V.Global.sQuote.Set(V.Screen.F_quote_rev!txt_quote_no.Text)
+V.Local.sQuery.Declare(String)
+V.Local.sMessage.Declare(String)
+V.Local.iRev.Declare(Long)
+V.Local.sPrevRev.Declare(String)
+
+F.Intrinsic.String.Build("Rev = '{0}'",V.Global.sRev.Trim,V.Local.sQuery)
+F.Data.DataView.SetFilter("dtChange","dvChange",V.Local.sQuery)
+F.Data.DataView.SetSort("dtChange","dvChange","Seq ASC")
+
+Program.Sub.dropdownlist_quote_rev_click.End
+Program.Sub.cmd_browse_quote_click.Start
+Variable.Local.sRet.Declare(String)
+Variable.Local.sTemp.Declare(String)
+Variable.Local.sTitles.Declare(String)
+Variable.Local.iWidths.Declare(Long)
+V.Local.sQuery.Declare(String)
+V.Local.sRev.Declare(String)
+
+V.Local.sCreatedDate.Declare(String)
+V.Local.dCreatedDate.Declare(Date)
+V.Local.sRevDate.Declare(String)
+
+V.Local.iFinalRev.Declare(Long)
+V.Local.iIndex.Declare(Long)
+V.Local.i1.Declare(Long)
+
+V.Local.yr.Declare(String)
+V.Local.mo.Declare(String)
+V.Local.day.Declare(String)
+V.Local.date.Declare(String)
+
+'Function.Intrinsic.String.Split("PO No*!*Line*!*Vendor*!*Part No*!*Part Description*!*Quantity","*!*",Variable.local.sTitles)
+'Function.Intrinsic.String.Split("800*!*600*!*800*!*1700*!*3000*!*800","*!*",Variable.local.iWidths)
+Function.Intrinsic.String.Split("PO No*!*","*!*",Variable.local.sTitles)
+Function.Intrinsic.String.Split("800*!*","*!*",Variable.local.iWidths)
+
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+'F.Intrinsic.UI.Browser("Select a Quote","conx","SELECT QUOTE_NO, RECORD_NO, CUSTOMER, PART, DESCRIPTION, QTY_QUOTED, date_quote FROM v_QUOTE_LINES ORDER BY QUOTE_NO, RECORD_NO",V.Local.sTitles,V.Local.iWidths,14000,8000,V.Local.sRet)
+'F.Intrinsic.UI.Browser("Select a PO","conx","SELECT Purchase_Order, RECORD_NO, Vendor, PART, DESCRIPTION, QTY_Order FROM v_PO_Lines ORDER BY Purchase_Order, RECORD_NO",V.Local.sTitles,V.Local.iWidths,14000,8000,V.Local.sRet)
+F.Intrinsic.UI.Browser("Select a PO","conx","SELECT Purchase_Order FROM v_PO_Header UNION ALL (SELECT Purchase_Order FROM GAB_6454_PO_REV where Purchase_Order NOt IN (SELECT Purchase_Order FROM v_PO_Header) and Purchase_Order <> '0000000' Group By PURCHASE_ORDER) ORDER BY Purchase_Order;","PO No",800,14000,8000,V.Local.sRet)
+Function.Intrinsic.Control.If(Variable.Local.sRet,"=","***CANCEL***")
+	Function.Intrinsic.UI.Msgbox("No PO is selected","WARNING")
+Function.Intrinsic.Control.Else
+	Gui.F_quote_rev.dropdownlist_quote_rev.ClearItems
+	Gui.F_quote_rev.dropdownlist_quote_rev.Text("")
+'	Gui.F_quote_rev.fg_quote_rev.LoadFromString("*!**!**!**!**!**!**!**!*",2)
+
+	Function.Intrinsic.String.Split(Variable.Local.sRet,"*!*",Variable.Local.sRet)
+	V.Global.sQuote.Set(V.Local.sRet(0))
+	F.Intrinsic.Control.CallSub(loadquoterev)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.cmd_browse_quote_click.End
+Program.Sub.loadUDT.Start
+V.Local.sQuery.Declare(String)
+V.Local.sQuote.Declare(String)
+V.Local.sFilter.Declare
+
+V.Local.i1.Declare(Long)
+
+F.Intrinsic.Control.If(V.DataTable.dtChange.Exists,=,True)
+	F.Data.DataView.Close("dtChange","dvChange")
+	F.Data.DataTable.Close("dtChange")
+F.Intrinsic.Control.EndIf
+
+'F.Intrinsic.String.Build("select Seq as Seq, case action when 'A' then 'Add' when 'M' then 'Modify' when 'D' then 'Delete' end as Action, Line as Line, Change as Change, Before as Before, After as After, UserID as UserID, Date_chg as Date, Time_chg as Time, Rev as Rev from ina_quote_rev where quote_no = '{0}' and seq <> '00' and seq <> 'ZZ' order by rev, seq",V.Global.sQuote.Trim,V.Local.sQuery)
+F.Intrinsic.String.Build("select Seq as Seq, case action when 'A' then 'Add' when 'M' then 'Modify' when 'D' then 'Delete' end as Action, Line as Line, Change as Change, Before as Before, After as After, UserID as UserID, Date_chg as Date, Time_chg as Time, Rev as Rev from GAB_6454_PO_rev where purchase_order = '{0}' and seq <> '00' and seq <> 'ZZ' order by rev, seq",V.Global.sQuote.Trim,V.Local.sQuery)
+F.Data.DataTable.CreateFromSQL("dtChange","conx",V.Local.sQuery,True)
+F.Intrinsic.String.Build("Rev = '{0}'",V.Global.sRev.Trim,V.Local.sFilter)
+F.Data.DataView.Create("dtChange","dvChange",22,V.Local.sFilter,"Seq ASC")
+Gui.F_quote_rev.GsGCChange.AddGridviewFromDataview("gvChange","dtChange","dvChange")
+Gui.F_quote_rev.GsGCChange.MainView("gvChange")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Rev","Visible",False)
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Seq","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Action","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Line","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Change","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Before","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","After","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","UserID","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Date","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Time","HeaderHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Seq","CellHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Action","CellHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Line","CellHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","UserID","CellHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Date","CellHAlignment","Center")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Time","CellHAlignment","Center")
+
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Seq","MinWidth","40")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Action","MinWidth","70")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Line","MinWidth","50")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Change","MinWidth","140")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Before","MinWidth","200")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","After","MinWidth","200")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","UserID","MinWidth","120")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Date","MinWidth","120")
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Time","MinWidth","120")
+
+Gui.F_quote_rev.GsGCChange.SetColumnProperty("gvChange","Date","DisplayCustomDateTime","d")
+
+Gui.F_quote_rev.dropdownlist_quote_rev.Text(V.Global.sRev)
+F.Intrinsic.Control.ExitSub
+
+Program.Sub.loadUDT.End
+
+Program.Sub.loadQuoteRev.Start
+V.Local.i1.Declare(Long)
+V.Local.sQuery.Declare(String)
+V.Local.sRev.Declare(String)
+
+V.Local.sCreatedDate.Declare(String)
+V.Local.dCreatedDate.Declare(Date)
+V.Local.sRevDate.Declare(String)
+
+V.Local.iFinalRev.Declare(Long)
+V.Local.iIndex.Declare(Long)
+
+Gui.F_quote_rev.txt_quote_no.Text(V.Global.sQuote.Trim)
+'F.Intrinsic.String.Build("select qte.QTE_CREATED_BY as Originator, qte.QTE_CREATED_DATE as QteDate, company_currency as Currency, c.name_customer as Customer, sp.name as SP from v_quote_header qte left join v_customer_master c on qte.customer = c.customer left join salespersons sp on qte.salesperson = sp.id where quote_no = '{0}'",V.Global.sQuote.Trim,V.Local.sQuery)
+F.Intrinsic.String.Build("select po.date_order as QteDate, vm.name_vendor as Vendor, bd.name as BD from v_po_header po left join v_vendor_master vm on po.vendor = vm.vendor left join V_BUYER_DESCRIPTOR BD on po.buyer = bd.buyer_code where purchase_order = '{0}'",V.Global.sQuote.Trim,V.Local.sQuery)
+F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstQTE-INFO",V.Local.sQuery)
+
+F.Intrinsic.Control.If(V.ODBC.conx!rstQTE-INFO.EOF,=,True)
+	Gui.F_quote_rev.txt_cust.Text("")
+	Gui.F_quote_rev.txt_sales.Text("")
+	V.Local.sCreatedDate.Set("01 01 1900")
+F.Intrinsic.Control.Else
+
+	Gui.F_quote_rev.txt_cust.Text(V.ODBC.conx!rstQTE-INFO.FieldValTrim!Vendor)
+	Gui.F_quote_rev.txt_sales.Text(V.ODBC.conx!rstQTE-INFO.FieldValTrim!BD)
+	F.Intrinsic.String.Format(V.ODBC.conx!rstQTE-INFO.FieldVal!QteDate,"DD MMM YYYY",V.Local.sCreatedDate)
+F.Intrinsic.Control.EndIf
+F.ODBC.conx!rstQTE-INFO.Close
+
+	'Date reformat
+'	F.Intrinsic.String.Format(V.ODBC.conx!rstQTE-INFO.FieldVal!QteDate,"DD MMM YYYY",V.Local.sCreatedDate)
+	F.Intrinsic.String.Build("{0}",V.Local.sCreatedDate,V.Local.sCreatedDate)
+'	Gui.F_quote_rev.lbl_CreatedBy.Caption(V.Local.sCreatedDate)
+'	Gui.F_quote_rev.lbl_CreatedBy.Visible(True)
+'	Gui.F_quote_rev.txt_cust.Text(V.ODBC.conx!rstQTE-INFO.FieldValTrim!Vendor)
+'	Gui.F_quote_rev.txt_sales.Text(V.ODBC.conx!rstQTE-INFO.FieldValTrim!BD)
+	'Gui.F_quote_rev.lbl_currency.Caption(V.ODBC.conx!rstQTE-INFO.FieldValTrim!Currency)
+'	Gui.F_quote_rev.lbl_currency.Visible(True)
+	F.Intrinsic.String.Concat("SELECT * FROM GAB_6454_PO_REV WHERE PURCHASE_ORDER = '",V.Global.sQuote.Trim,"' AND SEQ = '00'",V.Local.sQuery)
+	F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstQTE",V.Local.sQuery)
+	F.Intrinsic.Control.If(V.ODBC.conx!rstQTE.EOF,=,True)
+		F.Intrinsic.UI.Msgbox("The selected po has no revision","PO Revision [APAC]")
+		Gui.F_quote_rev.dropdownlist_quote_rev.Visible(False)
+'		Gui.F_quote_rev.dropdownlist_quote_rev.ClearItems
+'		Gui.F_quote_rev.dropdownlist_quote_rev.Text("")
+'		Gui.F_quote_rev.dropdownlist_quote_rev.Locked(True)
+		F.ODBC.conx!rstQTE.Close
+		Gui.F_quote_rev.lbl_LastRev.Caption("")
+		Gui.F_quote_rev.lbl_LastRev.Visible(False)
+'		F.ODBC.conx!rstQTE-INFO.Close
+		F.Intrinsic.Control.CallSub(Loadudt)
+		F.Intrinsic.Control.ExitSub
+
+	F.Intrinsic.Control.Else
+		V.Global.sRev.Set(V.ODBC.conx!rstQTE.FieldVal!REV)
+		F.Intrinsic.Math.ConvertToLong(V.ODBC.conx!rstQTE.FieldVal!REV,V.Local.iFinalRev)
+		F.Intrinsic.String.Format(V.ODBC.conx!rstQTE.FieldVal!DATE_CHG,"DD MMM YYYY",V.Local.sRevDate)
+		F.Intrinsic.String.Build("{0} on {1}",V.ODBC.conx!rstQTE.FieldVal!REV,V.Local.sRevDate,V.Local.sRev)
+		Gui.F_quote_rev.lbl_LastRev.Caption(V.Local.sRev)
+		Gui.F_quote_rev.lbl_LastRev.Visible(True)
+
+		V.Global.sUser.Set(V.ODBC.conx!rstQTE.FieldValTrim!USERID)
+		'Filling up the dropdown list
+'		Gui.F_quote_rev.dropdownlist_quote_rev.Enabled(True)
+'		Gui.F_quote_rev.dropdownlist_quote_rev.Locked(False)
+		Gui.F_quote_rev.dropdownlist_quote_rev.Visible(True)
+		F.Intrinsic.Control.For(V.Local.i1,1,V.Local.iFinalRev,1)
+			F.Intrinsic.String.LPad(V.Local.i1,"0",2,V.Local.sRev)
+			F.Intrinsic.Math.Sub(V.Local.i1,1,V.Local.iIndex)
+			Gui.F_quote_rev.dropdownlist_quote_rev.AddItem(V.Local.sRev,V.Local.iIndex)
+		F.Intrinsic.Control.Next(V.Local.i1)
+		
+		F.Intrinsic.Control.CallSub(Loadudt)
+	F.Intrinsic.Control.EndIf
+	F.ODBC.conx!rstQTE.Close
+'F.Intrinsic.Control.EndIf
+'F.ODBC.conx!rstQTE-INFO.Close
+
+
+Program.Sub.loadQuoteRev.End
+
+Program.Sub.loadQuoteRevSub.Start
+Gui.F_quote_rev.cmd_browse_quote.Visible(False)
+Gui.F_quote_rev.txt_quote_no.Enabled(False)
+Gui.F_quote_rev..Show
+F.Intrinsic.Control.CallSub(Loadquoterev)
+
+Program.Sub.loadQuoteRevSub.End
+
+Program.Sub.Comments.Start
+${$0$}$INA_VIEW_QUOTE_REV$}$MHERTANTO$}$13/5/2015$}$False
+${$1$}$$}$$}$0$}$10960$}$QTS0200A-SCRIPT-1-HOOK$}$28/1/2016 1:15:29 AM$}$(Program: QTE200; Screen: QTS0200A)
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$This GAB script is to display all the changes made in the quote. It is a new screen that can to be placed under File, View, or Transactions.
+${$4$}$0$}$$}$0$}$-1$}$MHERTANTO$}$18/5/2015 12:48:34 AM$}$Adding a new way to open View Quote Revision from Hook 10960 in Open Quote or View Quote (loadQuoteRev, loadQuoteRevSub)
+${$4$}$0$}$$}$1$}$-1$}$MHERTANTO$}$18/5/2015 12:48:52 AM$}$In the new screen quote no and browsing button are not accessible
+${$4$}$0$}$$}$2$}$-1$}$MHERTANTO$}$18/5/2015 12:49:10 AM$}$Fix the display problem when changing from one quote to a new one
+${$4$}$0$}$$}$3$}$-1$}$MHERTANTO$}$19/5/2015 12:49:28 AM$}$Add a message notification when the current quote rev is opened by a user (the current rev only has only a reference row)
+${$4$}$0$}$$}$4$}$-1$}$MHERTANTO$}$20/5/2015 12:49:40 AM$}$Resize Change, Before, After column widths in fg_style
+${$4$}$0$}$$}$5$}$-1$}$MHERTANTO$}$24/5/2015 12:49:53 AM$}$In loadUDT, the database query is added with exclusion of seq ZZ
+${$5$}$2.0.0.0$}$2
+${$6$}$dyunus$}$20240131190252629$}$xZ6SHi8g7O0Qsxe6AiO2NH3PnOKQRy0TfyMZEJ8kIpsmjOlk+Al2NyZgu3yqNYcY9j8upZAhq3c=
+Program.Sub.Comments.End
+
