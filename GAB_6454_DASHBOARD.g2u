@@ -1,0 +1,502 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.frmPORev..Create(BaseForm)
+Gui.frmPORev..Caption("PO Revision (6454)")
+Gui.frmPORev..Size(15330,10980)
+Gui.frmPORev..MinX(15045)
+Gui.frmPORev..MinY(10095)
+Gui.frmPORev..Position(0,0)
+Gui.frmPORev..BackColor(-2147483633)
+Gui.frmPORev..MousePointer(0)
+Gui.frmPORev..Event(UnLoad,Unload)
+Gui.frmPORev..AlwaysOnTop(False)
+Gui.frmPORev..FontName("Tahoma")
+Gui.frmPORev..FontSize(8.25)
+Gui.frmPORev..ControlBox(True)
+Gui.frmPORev..MaxButton(True)
+Gui.frmPORev..MinButton(True)
+Gui.frmPORev..Moveable(True)
+Gui.frmPORev..Sizeable(True)
+Gui.frmPORev..ShowInTaskBar(True)
+Gui.frmPORev..TitleBar(True)
+Gui.frmPORev.picGSSLogo.Create(PictureBox)
+Gui.frmPORev.picGSSLogo.Size(9255,1545)
+Gui.frmPORev.picGSSLogo.Position(5310,45)
+Gui.frmPORev.picGSSLogo.Enabled(True)
+Gui.frmPORev.picGSSLogo.Visible(True)
+Gui.frmPORev.picGSSLogo.Zorder(0)
+Gui.frmPORev.lblStatus.Create(Label,"Loading Data....",False,1935,255,0,2625,30,True,0,"Arial",8,-2147483633,0,0)
+Gui.frmPORev.lblStatus.BorderStyle(0)
+Gui.frmPORev.pbStatus.Create(ProgressBar)
+Gui.frmPORev.pbStatus.Size(1935,255)
+Gui.frmPORev.pbStatus.Position(2610,300)
+Gui.frmPORev.pbStatus.Visible(False)
+Gui.frmPORev.GsGCPORev.Create(GsGridControl)
+Gui.frmPORev.GsGCPORev.Size(14970,8850)
+Gui.frmPORev.GsGCPORev.Position(60,1350)
+Gui.frmPORev.GsGCPORev.TabStop(True)
+Gui.frmPORev.GsGCPORev.TabIndex(4)
+Gui.frmPORev.GsGCPORev.Event(RowCellClick,GsGCPORev_RowCellClick)
+Gui.frmPORev.GsGCPORev.Enabled(True)
+Gui.frmPORev.GsGCPORev.Visible(True)
+Gui.frmPORev.GsGCPORev.Zorder(0)
+Gui.frmPORev.cmdRefresh.Create(Button)
+Gui.frmPORev.cmdRefresh.Size(975,345)
+Gui.frmPORev.cmdRefresh.Position(2565,840)
+Gui.frmPORev.cmdRefresh.Caption("REFRESH")
+Gui.frmPORev.cmdRefresh.Event(Click,LoaddtPoRev)
+Gui.frmPORev.cmdRefresh.TabStop(True)
+Gui.frmPORev.cmdRefresh.TabIndex(3)
+Gui.frmPORev.cmdRefresh.Enabled(True)
+Gui.frmPORev.cmdRefresh.Visible(True)
+Gui.frmPORev.cmdRefresh.Zorder(0)
+Gui.frmPORev.cmdRefresh.FontName("Tahoma")
+Gui.frmPORev.cmdRefresh.FontSize(8.25)
+Gui.frmPORev.dtpBeg.Create(DatePicker)
+Gui.frmPORev.dtpBeg.Size(1935,285)
+Gui.frmPORev.dtpBeg.Position(150,225)
+Gui.frmPORev.dtpBeg.Enabled(True)
+Gui.frmPORev.dtpBeg.Visible(True)
+Gui.frmPORev.dtpBeg.Zorder(0)
+Gui.frmPORev.dtpBeg.CheckBox(False)
+Gui.frmPORev.dtpBeg.FontName("Tahoma")
+Gui.frmPORev.dtpBeg.FontSize(8.25)
+Gui.frmPORev.dtpEnd.Create(DatePicker)
+Gui.frmPORev.dtpEnd.Size(1935,285)
+Gui.frmPORev.dtpEnd.Position(150,855)
+Gui.frmPORev.dtpEnd.Enabled(True)
+Gui.frmPORev.dtpEnd.Visible(True)
+Gui.frmPORev.dtpEnd.Zorder(0)
+Gui.frmPORev.dtpEnd.CheckBox(False)
+Gui.frmPORev.dtpEnd.FontName("Tahoma")
+Gui.frmPORev.dtpEnd.FontSize(8.25)
+Gui.frmPORev.lblBegDate.Create(Label,"Beg.Date",True,1935,255,0,120,30,True,0,"Arial",8,-2147483633,0,0)
+Gui.frmPORev.lblBegDate.BorderStyle(0)
+Gui.frmPORev.lblEndDate.Create(Label,"End Date",True,1935,255,0,135,630,True,0,"Arial",8,-2147483633,0,0)
+Gui.frmPORev.lblEndDate.BorderStyle(0)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+	V.Global.bLoadDate.Declare
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sGSSLogo.Declare
+	V.Local.sIcon.Declare
+	V.Local.sDir.Declare
+	V.Local.bDir.Declare
+
+	F.Intrinsic.String.Build("{0}\GAB\GAS\gss2.ico",V.Caller.PluginsDir,v.Local.sIcon)
+	F.Intrinsic.String.Build("{0}\GAB\GAS\GAB_GSS_Logo_Green_Dash.png",V.Caller.PluginsDir,V.Local.sGssLogo)
+	Gui.frmPORev.picGSSLogo.Picture(V.Local.sGSSLogo)
+	Gui.frmPORev..Icon(V.Local.sIcon)
+
+	F.Intrinsic.Control.CallSub(SetAnchors)
+	F.Intrinsic.Control.CallSub(SetContextMenus)
+
+	Gui.frmPORev..Show
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.Unload.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	F.Intrinsic.Control.If(V.Global.bLoadDate)
+		F.Intrinsic.Control.CallSub(Serialize)
+	F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.Unload.End
+
+Program.Sub.SetAnchors.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	'0 - None
+	'1 - Top
+	'2 - Bottom
+	'4 - Left
+	'8 - Right
+
+	Gui.frmPORev.picGssLogo.Anchor(1)
+	Gui.frmPORev.GsGCPORev.Anchor(15)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.SetAnchors.End
+
+Program.Sub.SetContextMenus.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	Gui.frmPORev..ContextMenuCreate("CTXPOREV")
+	Gui.frmPORev.GsGCPORev.ContextMenuAttach("CTXPOREV")
+	Gui.frmPORev..ContextMenuAddItem("CTXPOREV","Refresh",0,"Refresh")
+	Gui.frmPORev..ContextMenuAddItem("CTXPOREV","Export",0,"Export")
+	Gui.frmPORev..ContextMenuAddItem("CTXPOREV","ResetColumns",0,"Reset Columns")
+	Gui.frmPORev..ContextMenuSetItemEventHandler("CTXPOREV","Refresh","LoaddtPoRev")
+	Gui.frmPORev..ContextMenuSetItemEventHandler("CTXPOREV","Export","MenuClickExport")
+	Gui.frmPORev..ContextMenuSetItemEventHandler("CTXPOREV","ResetColumns","MenuClickResetColumns")
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.SetContextMenus.End
+
+Program.Sub.MenuClickExport.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sFileExport.Declare
+	V.Local.bExcel.Declare
+	V.Local.bFileLocked.Declare
+	V.Local.sMsg.Declare
+	V.Local.sControl.Declare
+
+		F.Automation.MSExcel.CheckPresence(V.Local.bExcel)
+		F.Intrinsic.Control.If(V.Local.bExcel)
+			F.Intrinsic.String.Build("{0}\GAB_6454_PO_Rev_{1}_Export.xlsx",V.Caller.LocalGssTempDir,V.Local.sControl,V.Local.sFileExport)
+			F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+			F.Intrinsic.Control.If(V.Local.bFileLocked)
+				F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+				F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+			F.Intrinsic.Control.Else
+				Gui.frmPORev.GsGCPORev.Export(V.Local.sFileExport,"xlsx")
+				F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+			F.Intrinsic.Control.EndIf
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Build("{0}\GAB_6454_PO_Rev_{1}_Export.csv",V.Caller.LocalGssTempDir,V.Local.sControl,V.Local.sFileExport)
+			F.Intrinsic.File.IsFileLocked(V.Local.sFileExport,V.Local.bFileLocked)
+			F.Intrinsic.Control.If(V.Local.bFileLocked)
+				F.Intrinsic.String.Build("File is already open. Please close and export again.{0}File: {1}",V.Ambient.NewLine,V.Local.sFileExport,V.Local.sMsg)
+				F.Intrinsic.UI.Msgbox(V.Local.sMsg,"File In Use")
+			F.Intrinsic.Control.Else
+				Gui.frmPORev.GsGCPORev.Export(V.Local.sFileExport,"csv")
+			F.Intrinsic.Control.EndIf
+			F.Intrinsic.Task.ShellExec(0,"",V.Local.sFileExport,"","",1)
+		F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.MenuClickExport.End
+
+Program.Sub.MenuClickResetColumns.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.bSerialize.Declare
+
+	F.Intrinsic.Control.SelectCase(V.Args.MenuName)
+		F.Intrinsic.Control.Case("CTXPOREV")
+			V.Global.bLoadDate.Set(False)
+			F.Global.Registry.AddValue(V.Caller.User,V.Caller.CompanyCode,"gvPORev",4631,1000,False,"Serialize",False,0,-999.0,1/1/1980,12:00:00 AM,"")
+			F.Intrinsic.Control.CallSub(LoaddtPoRev)
+	F.Intrinsic.Control.EndSelect
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.MenuClickResetColumns.End
+
+Program.Sub.LoaddtPoRev.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sSQL.Declare
+	V.Local.dBegDate.Declare
+	V.Local.dEndDate.Declare
+	V.Local.sPart.Declare
+	V.Local.sActiveFilterString.Declare
+	V.Local.fBreak.Declare
+	V.Local.iCnt.Declare
+	v.Local.iFor.Declare
+	v.Local.iOne.Declare
+	v.Local.iCount.Declare
+	V.Local.fCompare.Declare
+	v.Local.iSql1.Declare
+	v.Local.iSql2.Declare
+	V.Local.fCost1.Declare
+	V.Local.fCost2.Declare
+	V.Local.fMinVariance.Declare
+	V.Local.fVariance.Declare
+
+	Gui.frmPORev.lblStatus.Visible(True)
+	Gui.frmPORev.pbStatus.Visible(True)
+	Gui.frmPORev.pbStatus.Min(0)
+	Gui.frmPORev.pbStatus.Max(100)
+	
+	V.Local.dBegDate.Set(V.Screen.frmPORev!dtpBeg.Value)
+	V.Local.dEndDate.Set(V.Screen.frmPORev!dtpEnd.Value)
+	F.Intrinsic.Control.If(V.Local.dBegDate,>,V.Local.dEndDate)
+		F.Intrinsic.UI.Msgbox("Beg. Date cannot be after End. Date. Please change dates.","Try again")
+		Gui.frmPORev.lblStatus.Visible(False)
+		Gui.frmPORev.pbStatus.Visible(False)
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+
+	F.ODBC.Connection!con.OpenCompanyConnection(300)
+
+	F.Intrinsic.Control.If(V.Global.bLoadDate)
+		F.Intrinsic.Control.CallSub(Serialize)
+	F.Intrinsic.Control.EndIf
+	V.Global.bLoadDate.Set(True)
+
+	F.Intrinsic.Control.If(V.DataTable.dtPoRev.Exists)
+		F.Data.DataTable.Close("dtPoRev")
+	F.Intrinsic.Control.EndIf
+
+'	V.Local.fVariance.Set(V.Screen.frmPORev!txtVariance.Text)
+	F.Intrinsic.Math.Sub(0,V.Local.fVariance,V.Local.fMinVariance)
+
+	'Load all parts in Inventory History
+
+	F.Intrinsic.String.Build("select GAB.PURCHASE_ORDER, GAB.REV, GAB.SEQ, GAB.LINE, PL.PART, PL.PRODUCT_LINE, IF(GAB.ACTION = 'M', 'Modify', IF(GAB.ACTION = 'D', 'Delete','')) AS ACTION, GAB.CHANGE, GAB.BEFORE, GAB.AFTER, IF(GAB.CHANGE='Discount Percent',IF(EXCHANGE_COST2<>0,EXCHANGE_COST2,COST),0) AS COST, IF(GAB.CHANGE='Discount Percent',IF(EXCHANGE_COST2<>0,EXCHANGE_COST2-(EXCHANGE_COST2*CONVERT(GAB.AFTER,SQL_FLOAT)),COST-(COST*CONVERT(GAB.AFTER,SQL_FLOAT))),0) AS DISCCOST, GAB.USERID, GAB.DATE_CHG, GAB.TIME_CHG, GAB.PRGM from GAB_6454_PO_REV GAB Left Join V_PO_LINES PL ON GAB.PURCHASE_ORDER = PL.PURCHASE_ORDER AND GAB.LINE = PL.RECORD_NO AND ACTION = 'Modify' WHERE SEQ <> '00' AND SEQ <> 'ZZ' AND DATE_CHG BETWEEN '{0}' AND '{1}'", V.Local.dBegDate.PervasiveDate, V.Local.dEndDate.PervasiveDate, V.Local.sSQL)
+	F.Data.DataTable.CreateFromSQL("dtPoRev","con",V.Local.sSQL,True)
+	Gui.frmPORev.pbStatus.Value(15)
+
+	F.ODBC.Connection!con.Close
+
+	Gui.frmPORev.pbStatus.Value(90)
+	F.Intrinsic.Control.CallSub(LoadgvPORev)
+	F.Intrinsic.Control.CallSub(Deserialize)
+	Gui.frmPORev.pbStatus.Value(100)
+	Gui.frmPORev.lblStatus.Visible(False)
+	Gui.frmPORev.pbStatus.Visible(False)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.LoaddtPoRev.End
+
+Program.Sub.LoadgvPORev.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	v.Local.iNum.Declare
+	v.Local.iCnt.Declare
+	v.Local.sTemp.Declare
+	v.Local.iCol.Declare
+
+	Gui.frmPORev.GsGCPORev.AddGridviewFromDatatable("gvPORev","dtPoRev")
+	Gui.frmPORev.GsGCPORev.SuspendLayout()
+	Gui.frmPORev.GsGCPORev.SetGridViewProperty("gvPORev","MultiSelect",True)
+	Gui.frmPORev.GsGCPORev.SetGridViewProperty("gvPORev","AllowSort",True)
+	Gui.frmPORev.GsGCPORev.SetGridViewProperty("gvPORev","AllowFilter",True)
+	Gui.frmPORev.GsGCPORev.SetGridViewProperty("gvPORev","ShowGroupPanel",True)
+	Gui.frmPORev.GsGCPORev.SetGridViewProperty("gvPORev","EnableAppearanceOddRow",True)
+	Gui.frmPORev.GsGCPORev.SetGridViewProperty("gvPORev","OptionsViewColumnAutoWidth",False)
+	
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","REV","Visible",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","SEQ","Visible",False)
+'	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRGM","Visible",False)
+
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PURCHASE_ORDER","Caption","PO")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","LINE","Caption","Line #/Header")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PART","Caption","Part")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRODUCT_LINE","Caption","PL")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","ACTION","Caption","Action")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","CHANGE","Caption","Change")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","BEFORE","Caption","Before")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","AFTER","Caption","After")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","COST","Caption","Standard Cost")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DISCCOST","Caption","Discounted Cost")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","USERID","Caption","User ID")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DATE_CHG","Caption","Date Change")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","TIME_CHG","Caption","Time Change")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRGM","Caption","Program")
+
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PURCHASE_ORDER","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","LINE","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PART","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRODUCT_LINE","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","ACTION","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","CHANGE","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","BEFORE","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","AFTER","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","COST","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DISCCOST","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","USERID","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DATE_CHG","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","TIME_CHG","AllowEdit",False)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRGM","AllowEdit",False)
+
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PURCHASE_ORDER","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","LINE","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PART","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRODUCT_LINE","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","ACTION","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","CHANGE","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","BEFORE","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","AFTER","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","COST","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DISCCOST","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","USERID","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DATE_CHG","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","TIME_CHG","ReadOnly",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRGM","ReadOnly",True)
+
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PURCHASE_ORDER","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","LINE","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PART","MinWidth","150")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRODUCT_LINE","MinWidth","50")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","ACTION","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","CHANGE","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","BEFORE","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","AFTER","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","COST","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DISCCOST","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","USERID","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DATE_CHG","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","TIME_CHG","MinWidth","100")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRGM","MinWidth","100")
+
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PURCHASE_ORDER","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","LINE","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PART","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRODUCT_LINE","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","ACTION","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","CHANGE","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","BEFORE","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","AFTER","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","COST","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DISCCOST","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","USERID","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DATE_CHG","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","TIME_CHG","HeaderFontBold",True)
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRGM","HeaderFontBold",True)
+	
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PURCHASE_ORDER","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","LINE","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PART","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRODUCT_LINE","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","ACTION","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","CHANGE","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","BEFORE","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","AFTER","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","COST","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DISCCOST","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","USERID","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DATE_CHG","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","TIME_CHG","HeaderHAlignment","Center")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","PRGM","HeaderHAlignment","Center")
+	
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DATE_CHG","DisplayCustomDatetime","d")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","COST","DisplayCustomNumeric","#,###,###,##0.000000")
+	Gui.frmPORev.GsGCPORev.SetColumnProperty("gvPORev","DISCCOST","DisplayCustomNumeric","#,###,###,##0.000000")
+
+	Gui.frmPORev.GsGCPORev.ResumeLayout()
+	Gui.frmPORev.GsGCPORev.MainView("gvPORev")
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.LoadgvPORev.End
+
+Program.Sub.GsGCPORev_RowCellClick.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	
+	V.Local.sOrder.Declare
+	V.Local.sOrderLn.Declare
+	V.Local.sPart.Declare
+	V.Local.sLoc.Declare
+	V.Local.sDesc.Declare
+	V.Local.sQtyOnHand.Declare
+	V.Local.sShipSchd.Declare
+	V.Local.sParams.Declare
+	V.Local.sComplete.Declare
+	V.Local.sSQL.Declare
+	V.Local.sFile.Declare
+	
+	F.Intrinsic.Control.SelectCase(V.Args.Column)
+		F.Intrinsic.Control.Case("PART")
+			Gui.frmPORev.GsGCPORev.GetCellValueByColumnName("gvPORev","Part",V.Args.RowIndex,V.Local.sPart)
+			V.Local.sLoc.Set("")
+			F.Intrinsic.String.Concat(V.Local.sPart,"!*!",V.Local.sLoc,"!*!","O",V.Local.sParams)
+			F.Global.General.CallWrappersync(300011,v.Local.sParams)
+	F.Intrinsic.Control.EndSelect
+	
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End 
+	F.Intrinsic.Control.EndTry
+Program.Sub.GsGCPORev_RowCellClick.End
+
+Program.Sub.Serialize.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sSerialize.Declare
+
+	'gvPORev
+	Gui.frmPORev.GsGCPORev.Serialize("gvPORev",V.Local.sSerialize)
+	F.Global.Registry.AddValue(V.Caller.User,V.Caller.CompanyCode,"gvPORev",4631,1000,False,"Serialize",False,0,-999.0,1/1/1980,12:00:00 AM,V.Local.sSerialize)
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.Serialize.End
+
+Program.Sub.Deserialize.Start
+	F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	V.Local.sSerialize.Declare
+
+	'gvPORev
+	F.Global.Registry.ReadValue(V.Caller.User,V.Caller.CompanyCode,"gvPORev",4631,1000,6,"",V.Local.sSerialize)
+	F.Intrinsic.Control.If(V.Local.sSerialize.Trim,<>,"")
+		Gui.frmPORev.GsGCPORev.Deserialize(V.Local.sSerialize)
+	F.Intrinsic.Control.EndIf
+
+	F.Intrinsic.Control.Catch
+		F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+		F.Intrinsic.UI.Msgbox(V.Local.sError)
+		F.Intrinsic.Control.End
+
+	F.Intrinsic.Control.EndTry
+Program.Sub.Deserialize.End
+
+Program.Sub.Comments.Start
+${$0$}$Man Utilization$}$DENI YUNUS$}$7/30/2019 8:30:15 AM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$DISPLAY ALL EMPLOYEES WITH ACTUAL TIME, TOTAL TIME ATTENDENCE, TOTAL INDIRECT, AND MAN UTILIZATION
+${$5$}$2.0.0.0$}$2
+${$6$}$dyunus$}$20240311141941296$}$xZ6SHi8g7O0Qsxe6AiO2NH3PnOKQRy0TsQ8KcKnknQQftn1DXAjkeieMroJa2eU5VZ2nJqqaBes=
+Program.Sub.Comments.End
