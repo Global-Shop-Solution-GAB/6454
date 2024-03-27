@@ -367,9 +367,13 @@ F.Intrinsic.Control.If(V.ODBC.conx!rstQTE.EOF,=,False)
 		F.ODBC.conx!rstQTE.Close
 		F.Intrinsic.Control.ExitSub
 	F.Intrinsic.Control.Else
-		F.Intrinsic.Math.Add(V.Local.iRevCount,2,V.Local.iRevCount)
-		F.Intrinsic.String.LPad(V.Local.iRevCount,"0",2,V.Local.sRev)
-		F.ODBC.conx!rstQTEOLD.Close
+		F.Intrinsic.String.Concat("SELECT * FROM GAB_6454_PO_REV WHERE PURCHASE_ORDER = '",V.Local.sPO.Trim,"' AND REV = '",V.Local.sRev.Trim,"' AND SEQ <> '00' AND SEQ <> 'ZZ'",V.Local.sQuery)
+		F.ODBC.Connection!conx.OpenLocalRecordsetRO("rstRevCheck",V.Local.sQuery)
+		F.Intrinsic.Control.If(V.ODBC.conx!rstRevCheck.EOF,=,False)
+			F.Intrinsic.Math.Add(V.Local.iRevCount,2,V.Local.iRevCount)
+			F.Intrinsic.String.LPad(V.Local.iRevCount,"0",2,V.Local.sRev)
+		F.Intrinsic.Control.EndIf
+		F.ODBC.conx!rstRevCheck.Close
 	F.Intrinsic.Control.EndIf
 F.Intrinsic.Control.Else
 	V.Local.iRevCount.Set(1)
@@ -960,6 +964,6 @@ ${$4$}$0$}$$}$2$}$-1$}$SUPERVSR$}$18/5/2015 12:42:32 AM$}$deleteReference has be
 ${$4$}$0$}$$}$1$}$-1$}$SUPERVSR$}$18/5/2015 12:42:17 AM$}$Adding part changes tracking in addModifyLine
 ${$4$}$0$}$$}$0$}$-1$}$SUPERVSR$}$18/5/2015 12:41:56 AM$}$Adding a new hook (10710) to change the label in Script 1 button
 ${$5$}$2.0.0.0$}$2
-${$6$}$dyunus$}$20240206171013347$}$xZ6SHi8g7O0Qsxe6AiO2NH3PnOKQRy0TlZzN4+foWpb03BDr6KZhSh/FZAe97fP60je8vvm1/1A=
+${$6$}$dyunus$}$20240326161304008$}$xZ6SHi8g7O0Qsxe6AiO2NH3PnOKQRy0TDVI4Qa5ZrXi9ccw36MPM9KDyBtILSpp5FWqnmEh8yUU=
 Program.Sub.Comments.End
 
