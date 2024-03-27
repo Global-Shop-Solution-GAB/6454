@@ -351,11 +351,15 @@ F.ODBC.conx!rstQTE-INFO.Close
 '		Gui.F_quote_rev.dropdownlist_quote_rev.Enabled(True)
 '		Gui.F_quote_rev.dropdownlist_quote_rev.Locked(False)
 		Gui.F_quote_rev.dropdownlist_quote_rev.Visible(True)
-		F.Intrinsic.Control.For(V.Local.i1,1,V.Local.iFinalRev,1)
-			F.Intrinsic.String.LPad(V.Local.i1,"0",2,V.Local.sRev)
-			F.Intrinsic.Math.Sub(V.Local.i1,1,V.Local.iIndex)
-			Gui.F_quote_rev.dropdownlist_quote_rev.AddItem(V.Local.sRev,V.Local.iIndex)
-		F.Intrinsic.Control.Next(V.Local.i1)
+'		F.Intrinsic.Control.For(V.Local.i1,1,V.Local.iFinalRev,1)
+'			F.Intrinsic.String.LPad(V.Local.i1,"0",2,V.Local.sRev)
+'			F.Intrinsic.Math.Sub(V.Local.i1,1,V.Local.iIndex)
+'			Gui.F_quote_rev.dropdownlist_quote_rev.AddItem(V.Local.sRev,V.Local.iIndex)
+'		F.Intrinsic.Control.Next(V.Local.i1)
+		F.Intrinsic.String.Concat("SELECT distinct(REV), REV FROM GAB_6454_PO_REV WHERE PURCHASE_ORDER = '",V.Global.sQuote.Trim,"' GROUP BY REV",V.Local.sQuery)
+		F.Data.Dictionary.CreateFromSQL("dic","conx",V.Local.sQuery)
+		Gui.F_quote_rev.dropdownlist_quote_rev.AddItems("Dictionary","dic")
+		F.Data.Dictionary.Close("dic")
 		
 		F.Intrinsic.Control.CallSub(Loadudt)
 	F.Intrinsic.Control.EndIf
@@ -385,6 +389,6 @@ ${$4$}$0$}$$}$3$}$-1$}$MHERTANTO$}$19/5/2015 12:49:28 AM$}$Add a message notific
 ${$4$}$0$}$$}$4$}$-1$}$MHERTANTO$}$20/5/2015 12:49:40 AM$}$Resize Change, Before, After column widths in fg_style
 ${$4$}$0$}$$}$5$}$-1$}$MHERTANTO$}$24/5/2015 12:49:53 AM$}$In loadUDT, the database query is added with exclusion of seq ZZ
 ${$5$}$2.0.0.0$}$2
-${$6$}$dyunus$}$20240131190252629$}$xZ6SHi8g7O0Qsxe6AiO2NH3PnOKQRy0TfyMZEJ8kIpsmjOlk+Al2NyZgu3yqNYcY9j8upZAhq3c=
+${$6$}$dyunus$}$20240326163453771$}$xZ6SHi8g7O0Qsxe6AiO2NH3PnOKQRy0TDVI4Qa5ZrXhomRnrCpLhTcfp4MhsFU2L0eIo0Qb0rC8=
 Program.Sub.Comments.End
 
